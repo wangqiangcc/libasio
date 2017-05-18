@@ -8,7 +8,7 @@ static const int default_max_reconnect_time = 5;
 TCPClient::TCPClient(EventLoop* loop, const std::string& remote_addr, uint16_t port, const std::string& name)
 	: loop_(loop)
 	, socket_(loop_->io_service())
-	, remote_addr_(remote_addr_)
+    , remote_addr_(remote_addr)
 	, remote_port_(port)
 	, name_(name)
 	, reconnect_timer_(loop_->io_service())
