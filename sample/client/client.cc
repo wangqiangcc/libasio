@@ -6,7 +6,7 @@
 void OnConnection(const TCPConnPtr& conn) {
 	if (conn->IsConnected()) {
 		std::cout << conn->GetName() <<" connection accepted.\n";
-        conn->Send("abc");
+                conn->Send("client say hello!");
 	}
 	else if (conn->IsDisconnecting()) {
 		std::cout << conn->GetName() <<" connection disconnecting.\n";
