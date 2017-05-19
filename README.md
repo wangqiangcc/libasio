@@ -4,6 +4,7 @@ A modern C++ network library based on asio for high performance network services
 
 sample tcp server
 
+``` c
 #include <iostream>
 #include "EventLoop.h"
 #include "TcpServer.h"
@@ -39,10 +40,11 @@ int main()
 
 	return 0;
 }
-
+``` 
 
 sample tcp client
 
+``` c
 #include <iostream>
 #include "EventLoop.h"
 #include "TcpClient.h"
@@ -78,3 +80,4 @@ int main()
 
 	return 0;
 }
+``` 
