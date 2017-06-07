@@ -5,7 +5,7 @@
 #include <asio/ip/tcp.hpp>
 
 #include "ByteBuffer.h"
-#include "Callbacks.h"
+#include "TcpCallbacks.h"
 
 using asio::ip::tcp;
 using asio::ip::address;
