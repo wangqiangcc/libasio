@@ -1,5 +1,6 @@
 #include "EventLoop.h"
 #include "TcpConn.h"
+#include "MessageHead.h"
 
 TCPConn::TCPConn(EventLoop* loop, tcp::socket&& socket, std::string name)
 	: loop_(loop)
@@ -139,15 +140,16 @@ void TCPConn::SendInLoop(const char* data, size_t sz) {
 		return;
 	}
 
+	std::shared_ptr<MessageBuffer> msg = CreateMessageWithHeader(data, sz);
 	if (!async_writing_) {
 		if (write_buffer_.Size() > 0) {
 			writing_buffer_.Swap(write_buffer_);
 		}
-		writing_buffer_.Write(data, sz);
+		writing_buffer_.Write(msg->data_, msg->length_);
 		AsyncWrite();
 	}
 	else {
-		write_buffer_.Write(data, sz);
+		write_buffer_.Write(msg->data_, msg->length_);
 
 		size_t buffer_size = write_buffer_.Size() + writing_buffer_.Size();
 		if (buffer_size > high_water_mark_) {
@@ -160,6 +162,8 @@ void TCPConn::SendInLoop(const char* data, size_t sz) {
 
 void TCPConn::AsyncRead()
 {
+	recv_buffer_.Normalize();
+	recv_buffer_.EnsureValidSize();
     socket_.async_read_some(asio::buffer(recv_buffer_.WriteBegin(), recv_buffer_.ValidSize()),
 		std::bind(&TCPConn::HandleRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
 }
@@ -184,9 +188,22 @@ void TCPConn::HandleRead(asio::error_code err, std::size_t trans_bytes)
 		return;
 	} 
 
-	recv_buffer_.WriteBytes(trans_bytes);
-	
-	msg_fn_(shared_from_this(), recv_buffer_);
+    recv_buffer_.WriteBytes(trans_bytes);
+
+    if (recv_buffer_.Size() >= sizeof(MessageHead))
+    {
+        MessageHead* head = (MessageHead*)recv_buffer_.ReadBegin();
+        if (recv_buffer_.Size() >= head->length_ + sizeof(MessageHead))
+        {
+            //crc32 to do
+			std::shared_ptr<MessageBuffer> msg = CreateMessage(recv_buffer_.ReadBegin() + sizeof(MessageHead), head->length_);
+            recv_buffer_.ReadBytes(head->length_ + sizeof(MessageHead));
+
+            ByteBuffer buf;
+            buf.Write(msg->data_, msg->length_);
+            msg_fn_(shared_from_this(), buf);
+        }
+    }
 
 	AsyncRead();
 }

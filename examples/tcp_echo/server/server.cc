@@ -15,9 +15,6 @@ void OnConnection(const TCPConnPtr& conn) {
 void OnMessage(const TCPConnPtr& conn, ByteBuffer& buffer) {
     std::cout << "recv msg " << std::string(buffer.Data(), buffer.Size()) << std::endl;
     conn->Send("server say hello!");
-    //conn->Send(buffer.ReadBegin(), buffer.Size());
-    buffer.ReadBytes(buffer.Size());
-    buffer.Normalize();
 
 }
 
