@@ -2,7 +2,7 @@
 #define __MESSAGE_HEAD_H_
 
 
-// 2 + 1 + 1 + 4 = 8
+// 4 + 1 + 1 + 4 = 10
 struct MessageHead
 {
 	MessageHead():length_(0), compress_(0), crypto_(0), crc32_(0){}

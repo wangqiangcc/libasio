@@ -222,6 +222,8 @@ void TCPConn::HandleWrite(asio::error_code err, std::size_t trans_bytes)
 		AsyncWrite();
 		return;
 	}
+	writing_buffer_.Normalize();
+
 	if (write_buffer_.Size() > 0) 
 	{
 		writing_buffer_.Swap(write_buffer_);
