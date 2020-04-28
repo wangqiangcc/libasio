@@ -1,4 +1,4 @@
-#include <asio/connect.hpp>
+﻿#include <asio/connect.hpp>
 #include "TcpClient.h"
 #include "EventLoop.h"
 #include "TcpConn.h"
@@ -58,8 +58,8 @@ void TCPClient::Connect()
 		}
 		else {
 			if (auto_reconnect_ && reconnecting_times_ < default_max_reconnect_time) {
+                reconnect_timer_.expires_from_now(std::chrono::seconds() * reconnect_interval_);
 				reconnect_timer_.async_wait(std::bind(&TCPClient::Reconnect, this));
-				reconnect_timer_.expires_from_now(std::chrono::seconds() * reconnect_interval_);
 			} 
 			else {
 				/// 

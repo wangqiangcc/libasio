@@ -1,4 +1,4 @@
-#ifndef TCP_SERVER_H__
+﻿#ifndef TCP_SERVER_H__
 #define TCP_SERVER_H__
 
 #include <string>
@@ -9,6 +9,7 @@
 #include "TcpCallbacks.h"
 
 using asio::ip::tcp;
+using asio::ip::address;
 
 class EventLoop;
 class EventLoopThreadPool;

@@ -1,9 +1,8 @@
-#include "EventLoop.h"
+﻿#include "EventLoop.h"
 #include "EventLoopThreadPool.h"
 #include "TcpServer.h"
 #include "TcpConn.h"
 
-using asio::ip::address;
 TCPServer::TCPServer(EventLoop* loop, const std::string& bind_ip, uint16_t port, const std::string& name, uint32_t thread_num)
 	: loop_(loop)
 	, acceptor_(loop_->io_service(), tcp::endpoint(address::from_string(bind_ip), port))

@@ -1,4 +1,4 @@
-#ifndef TCP_CONN_H__
+﻿#ifndef TCP_CONN_H__
 #define TCP_CONN_H__
 
 #include <memory>
@@ -50,7 +50,7 @@ public:
 
 	void SetTCPNoDelay(bool on);
 
-	void Send(const char* data, size_t sz);
+    void Send(const char* data, size_t size);
 	void Send(const std::string& msg);
 
 	bool IsConnected() const {return status_ == kConnected;}
@@ -75,7 +75,7 @@ protected:
     void HandleWrite(asio::error_code err, std::size_t trans_bytes);
 
 	void SendStringInLoop(const std::string& message);
-	void SendInLoop(const char* data, size_t sz);
+    void SendInLoop(const char* data, size_t size);
 	
 private:
 	EventLoop* loop_;
