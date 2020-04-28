@@ -11,12 +11,12 @@ add_definitions(-DASIO_STANDALONE
         -DASIO_HAS_STD_TYPE_TRAIT)
 
 set(SOURCE_FILES
-    src/EventLoop.cc
-    src/EventLoopThread.cc
-    src/EventLoopThreadPool.cc
-    src/TcpClient.cc
-    src/TcpConn.cc
-    src/TcpServer.cc)
+    src/event_loop.cc
+    src/event_loop_thread.cc
+    src/event_loop_thread_pool.cc
+    src/tcp_client.cc
+    src/tcp_conn.cc
+    src/tcp_server.cc)
 
 add_library(libasio SHARED ${SOURCE_FILES})
 add_library(libasio_static STATIC ${SOURCE_FILES})

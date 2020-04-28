@@ -1,4 +1,4 @@
-#ifndef TCP_CLIENT_H__
+﻿#ifndef TCP_CLIENT_H__
 #define TCP_CLIENT_H__
 
 #include <string>
@@ -8,7 +8,7 @@
 #include <mutex>
 #include <asio/steady_timer.hpp>
 #include <asio/ip/tcp.hpp>
-#include "TcpCallbacks.h"
+#include "tcp_callbacks.h"
 
 using asio::steady_timer;
 using asio::ip::tcp;
