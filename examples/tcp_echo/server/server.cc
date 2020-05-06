@@ -1,7 +1,7 @@
-#include <iostream>
-#include "EventLoop.h"
-#include "TcpServer.h"
-#include "TcpConn.h"
+﻿#include <iostream>
+#include "event_loop.h"
+#include "tcp_server.h"
+#include "tcp_conn.h"
 
 void OnConnection(const TCPConnPtr& conn) {
 	if (conn->IsConnected()) {
@@ -14,8 +14,10 @@ void OnConnection(const TCPConnPtr& conn) {
 
 void OnMessage(const TCPConnPtr& conn, ByteBuffer& buffer) {
     std::cout << "recv msg " << std::string(buffer.Data(), buffer.Size()) << std::endl;
-    conn->Send("server say hello!");
+    buffer.ReadBytes(buffer.Size());
+    buffer.Normalize();
 
+    conn->Send("server say hello!");
 }
 
 int main()

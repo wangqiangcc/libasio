@@ -15,23 +15,23 @@ INCLUDEPATH = $$PWD/ \
                $$PWD/../../../src \
 
 HEADERS += \
-    ../../../src/ByteBuffer.h \
-    ../../../src/Callbacks.h \
-    ../../../src/EventLoop.h \
-    ../../../src/EventLoopThread.h \
-    ../../../src/EventLoopThreadPool.h \
-    ../../../src/TcpClient.h \
-    ../../../src/TcpConn.h \
-    ../../../src/TcpServer.h
+    ../../../src/bytebuffer.h \
+    ../../../src/tcp_callbacks.h \
+    ../../../src/event_loop.h \
+    ../../../src/event_loop_thread.h \
+    ../../../src/event_loop_thread_pool.h \
+    ../../../src/tcp_client.h \
+    ../../../src/tcp_conn.h \
+    ../../../src/tcp_server.h
 
 
 
 SOURCES += server.cc \
-    ../../../src/EventLoop.cc \
-    ../../../src/EventLoopThread.cc \
-    ../../../src/EventLoopThreadPool.cc \
-    ../../../src/TcpClient.cc \
-    ../../../src/TcpConn.cc \
-    ../../../src/TcpServer.cc
+    ../../../src/event_loop.cc \
+    ../../../src/event_loop_thread.cc \
+    ../../../src/event_loop_thread_pool.cc \
+    ../../../src/tcp_client.cc \
+    ../../../src/tcp_conn.cc \
+    ../../../src/tcp_server.cc
 
 

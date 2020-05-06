@@ -29,10 +29,9 @@ public:
 	tcp::socket* GetSocketForAccept() { return &accept_socket_; }
 private:
 	void Run(const Functor& pre, const Functor& post);
+
 	std::shared_ptr<EventLoop> ev_loop_;
-
 	std::shared_ptr<std::thread> thread_;
-
 	tcp::socket	accept_socket_;
 
 	enum Status {

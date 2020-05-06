@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.6)
+﻿cmake_minimum_required(VERSION 3.6)
 project(server)
 
 set(CMAKE_CXX_STANDARD 11)
-include_directories(../../../third_party/asio/include ../../../src)
+include_directories(../../third_party/asio/include ../../src)
 add_definitions(-DASIO_STANDALONE
         -DASIO_HAS_STD_ARRAY
         -DASIO_HAS_CSTDINT
@@ -12,12 +12,12 @@ add_definitions(-DASIO_STANDALONE
 
 
 set(SOURCE_FILES
-    ../../../src/EventLoop.cc
-    ../../../src/EventLoopThread.cc
-    ../../../src/EventLoopThreadPool.cc
-    ../../../src/TcpClient.cc
-    ../../../src/TcpConn.cc
-    ../../../src/TcpServer.cc
+    ../../src/event_loop.cc
+    ../../src/event_loop_thread.cc
+    ../../src/event_loop_thread_pool.cc
+    ../../src/tcp_client.cc
+    ../../src/tcp_conn.cc
+    ../../src/tcp_server.cc
     server.cc
     )
 
