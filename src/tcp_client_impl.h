@@ -11,7 +11,10 @@ class TcpClientImpl
 {
 public:
     TcpClientImpl(EventLoop* loop, const std::string &remote_addr, uint16_t port, const std::string &name)
-        : client_(new TCPClient(loop, remote_addr, port, name)) {
+        : client_(new TCPClient(loop, remote_addr, port, name))
+        , remote_addr_(remote_addr)
+        , port_(port)
+    {
         client_->Connect();
         client_->SetAutoReconnect(true);
         client_->SetConnCallback(std::bind(&TcpClientImpl::OnConnect_, this, std::placeholders::_1));
@@ -25,14 +28,14 @@ public:
     virtual void OnRecvData(const TCPConnPtr& conn, const std::shared_ptr<PACKET>& pPkt) = 0;
     virtual void OnConnect(const TCPConnPtr& conn) = 0;
 
-    std::string GetIpAddress() const { return ip_address_; }
+    std::string GetRemoteAddress() const { return remote_addr_; }
     uint16_t GetPort() const { return port_; }
 
 private:
     void OnConnect_(const TCPConnPtr& conn);
     void OnRecvData_(const TCPConnPtr& conn, ByteBuffer& buffer);
 
-    std::string ip_address_;
+    std::string remote_addr_;
     uint16_t port_;
     std::shared_ptr<TCPClient> client_;
 };
