@@ -1,8 +1,18 @@
 language: cpp
-compiler: gcc
-
 sudo: required
+compiler:
+- gcc
+os:
+- linux
 
+branches:
+  only:
+  - master
+  - "/^v\\d+\\./"
+  
+git:
+  submodules: true
+  
 matrix:
   include:
     # works on Precise and Trusty
@@ -51,3 +61,16 @@ matrix:
 
 before_install:
     - eval "${MATRIX_EVAL}"
+	
+before_script:
+  - cmake --version
+  - mkdir build
+  - cd build
+  - cmake . ${TRAVIS_BUILD_DIR}
+	
+notifications:
+  email: false
+	
+script:
+  - $COMPILER --version
+  - make CXX=$COMPILER
