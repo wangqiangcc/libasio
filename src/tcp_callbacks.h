@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <functional>
-#include "ByteBuffer.h"
+#include "bytebuffer.h"
 
 class TCPConn;
 

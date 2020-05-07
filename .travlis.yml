@@ -61,16 +61,15 @@ matrix:
 
 before_install:
     - eval "${MATRIX_EVAL}"
-	
+
 before_script:
   - cmake --version
   - mkdir build
   - cd build
   - cmake . ${TRAVIS_BUILD_DIR}
-	
+
 notifications:
   email: false
-	
+
 script:
-  - $COMPILER --version
-  - make CXX=$COMPILER
+  - make
