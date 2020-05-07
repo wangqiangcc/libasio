@@ -27,7 +27,6 @@ TCPServer::~TCPServer()
 
 bool TCPServer::Init()
 {
-	
 	return true;
 }
 
