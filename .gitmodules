@@ -2,3 +2,6 @@
 	path = third_party/protobuf
 	url = https://github.com/protocolbuffers/protobuf.git
 	branch = 3.5.1.1
+[submodule "third_party/cereal"]
+	path = third_party/cereal
+	url = https://github.com/USCiLab/cereal.git
