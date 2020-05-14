@@ -1,3 +1,4 @@
 [submodule "third_party/protobuf"]
 	path = third_party/protobuf
-	url = https://github.com/protocolbuffers/protobuf/tree/3.5.1.1
+	url = https://github.com/protocolbuffers/protobuf.git
+	branch = 3.5.1.1
