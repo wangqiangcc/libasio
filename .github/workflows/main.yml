@@ -28,9 +28,6 @@ jobs:
     # Checks-out submodules
     - name: Checkout submodules
       run: |
-          git clone https://github.com/${GITHUB_REPOSITORY} $GITHUB_WORKSPACE
-          git fetch -v --prune origin +refs/pull/${PR_NUMBER}/merge:refs/remotes/pull/${PR_NUMBER}/merge
-          git checkout --force --progress refs/remotes/pull/${PR_NUMBER}/merge
           git submodule sync --recursive
           git submodule update --init --force --recursive
 
