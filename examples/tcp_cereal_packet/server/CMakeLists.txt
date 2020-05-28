@@ -2,7 +2,7 @@
 project(server)
 
 set(CMAKE_CXX_STANDARD 11)
-include_directories(../../../third_party/asio/asio/include ../../../src)
+include_directories(../../../third_party/asio/asio/include ../../../third_party/cereal/include ../../../src ../packet ../utility)
 add_definitions(-DASIO_STANDALONE
         -DASIO_HAS_STD_ARRAY
         -DASIO_HAS_CSTDINT
@@ -18,6 +18,9 @@ set(SOURCE_FILES
     ../../../src/tcp_client.cc
     ../../../src/tcp_conn.cc
     ../../../src/tcp_server.cc
+	../packet/PacketCommon.cpp
+	../utility/log4z.cpp
+	simple_server.cc
     server.cc
     )
 

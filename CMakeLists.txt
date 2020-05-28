@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project(libasio)
 
 set(CMAKE_CXX_STANDARD 11)
-include_directories(third_party/asio/include)
+include_directories(third_party/asio/asio/include)
 add_definitions(-DASIO_STANDALONE
         -DASIO_HAS_STD_ARRAY
         -DASIO_HAS_CSTDINT
