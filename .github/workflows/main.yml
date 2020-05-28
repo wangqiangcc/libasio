@@ -24,6 +24,9 @@ jobs:
         
     # Checks-out submodules
     - name: Checkout submodules
+      shell: bash
+      run: |
+        git submodule sync --recursive
 
     # cmake build
     - name: cmake build
